@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Launch Vehicles</title>
+</head>
+<body bgcolor="grey">
+    <h1>Launch Vehicles</h1>
+    <h3>
+        <ul>
+    {% for rocket in rockets %}
+        {{ rocket.id }}. {{ rocket.title }}
+            <a href="{% url 'rocket_detail_url' rocket.id %}">More details</a>
+            <p></p>
+    {% endfor %}
+        </ul>
+    </h3>
+        <a href="{% url 'rocket_create_url' %}">Add New Launch Vehicle</a>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body bgcolor="gray">
+    <h2>Are you sure you want to delete {{ rocket.title }}?</h2>
+    <form action="" method="post">
+      {% csrf_token %}
+    <input type="submit" value="Delete">
+    </form>
+    <form action="{% url 'rocket_detail_url' rocket.id %}" method="get">
+        <input type="submit" value="No, Get Back">
+    </form>
+</body>
+</html>

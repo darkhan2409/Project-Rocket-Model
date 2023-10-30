@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About rocket</title>
+</head>
+<body bgcolor="gray">
+    <a href="{% url 'rocket_list_url' %}">Back to list</a>
+    <h2>Detailed information</h2>
+    <h3>Title: {{ rocket.title }}</h3>
+    <p>Type of mass of output load: {{ rocket.type }}</p>
+    <p>Condition of fuel components: {{ rocket.fuel_condition }}</p>
+    <p>Number of stages: {{ rocket.stages }}</p>
+    {% if rocket.image %}
+        <img src="{{ rocket.image.url }}" width="180px" height="250px">
+    {% endif %}
+    <p>
+        <a href="{% url 'rocket_update_url' rocket.id %}">Update info</a>
+    </p>
+    <a href="{% url 'rocket_delete_url' rocket.id %}">Delete this!</a>
+</body>
+</html>
