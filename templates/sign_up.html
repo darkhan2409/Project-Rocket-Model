@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Example@example.kz">
+        </p>
+        <p>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" placeholder="Password">
+        </p>
+        <p>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" placeholder="Input Name"
+                   value="{{ name }}">
+        </p>
+
+        <p>
+            <label for="surname">Surname:</label>
+            <input type="text" name="surname" id="surname" placeholder="Input Surname"
+                    value="{{ surname }}">
+        </p>
+
+         <p>
+            <label for="birth_date">Birth date:</label>
+            <input type="date" name="birth_date" id="birth_date" placeholder="Birth date"
+                    value="{{ birth_date }}">
+        </p>
+
+         <p>
+            <label for="age">Age:</label>
+            <input type="number" name="age" id="age" placeholder="Input Age"
+                    value="{{ age }}">
+        </p>
+
+        <input type="submit" value="Sign Up">
+    </form>
+</body>
+</html>

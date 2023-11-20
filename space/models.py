@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from .managers import CustomManager
 
 
 TYPE_CHOICES = [
@@ -24,4 +26,19 @@ class Rocket(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class CustomUser(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(unique=True)
+    name = models.CharField(max_length=100)
+    surname = models.CharField(max_length=100)
+    birth_date = models.DateField(null=True, blank=True)
+    age = models.PositiveSmallIntegerField(null=True, blank=True)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    object = CustomManager()
 

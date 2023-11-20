@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
+from django.contrib.auth import authenticate, login, logout
 
 
 def RocketListView(request):
@@ -64,4 +65,45 @@ def RocketDeleteView(request, rocket_id):
     if request.method == 'POST':
         rocket.delete()
     return redirect('rocket_list_url')
+
+
+def signIn(request):
+    if request.method == 'GET':
+        return render(request=request, template_name='sign_in.html')
+    elif request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('about_us_url')
+        context = {
+            'error': 'Не верный логин и/или пароль',
+            'email': email
+        }
+        return render(request=request, template_name='sign_in.html', context=context)
+
+
+def signOut(request):
+    logout(request)
+    return redirect('about_us_url')
+
+
+def signUp(request):
+    if request.method == 'GET':
+        return render(request=request, template_name='sign_up.html')
+    elif request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        name = request.POST.get('name')
+        surname = request.POST.get('surname')
+        birth_date = request.POST.get('birth_date')
+        age = request.POST.get('age')
+        custom = CustomUser(email=email, password=password, name=name, surname=surname, birth_date=birth_date, age=age)
+        custom.set_password(password)
+        custom.save()
+        return redirect('sign_in_url')
+
+
+
 

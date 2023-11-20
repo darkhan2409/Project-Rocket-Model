@@ -3,3 +3,4 @@ from .models import *
 
 
 admin.site.register(Rocket)
+admin.site.register(CustomUser)
