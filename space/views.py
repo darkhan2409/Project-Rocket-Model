@@ -12,6 +12,8 @@ def RocketListView(request):
     context = {
         'rockets': rockets_all
     }
+    if 'nickname' in request.session.keys():
+        context['nickname'] = request.session['nickname']
     return render(request=request, template_name='rocket_list_template.html', context=context)
 
 
@@ -73,6 +75,8 @@ def signIn(request):
     elif request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
+        nickname = request.POST.get('nickname')
+        request.session['nickname'] = nickname
         user = authenticate(email=email, password=password)
         if user is not None:
             login(request, user)
